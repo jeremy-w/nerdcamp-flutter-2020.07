@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
         // The navbar text displays fine in both modes, though.
 
         // FIXME: This is underlapping the navbar.
-        // FIXME: There is no scrollbar on the side!
         child: Center(
           child: RandomWords(),
         ),
@@ -44,26 +43,27 @@ class _RandomWordsState extends State<RandomWords> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: const EdgeInsets.only(left: 12),
-        itemBuilder: (BuildContext _context, int i) {
-          if (i.isOdd) {
-            return Divider();
-          }
+    return CupertinoScrollbar(
+        child: ListView.builder(
+            padding: const EdgeInsets.only(left: 12),
+            itemBuilder: (BuildContext _context, int i) {
+              if (i.isOdd) {
+                return Divider();
+              }
 
-          final int wordPairIndex = i ~/ 2;
-          if (wordPairIndex >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10));
-          }
+              final int wordPairIndex = i ~/ 2;
+              if (wordPairIndex >= _suggestions.length) {
+                _suggestions.addAll(generateWordPairs().take(10));
+              }
 
-          final wordPair = _suggestions[wordPairIndex];
-          var text = Text(wordPair.asPascalCase, style: _biggerFont);
-          if (wordPairIndex == 1) {
-            _logBrightnessInfo(_context, text);
-          }
-          // ListTile is a Material component. It requires a Material in the tree above it. We don't have one, so just use a Row instead.
-          return Row(children: [text]);
-        });
+              final wordPair = _suggestions[wordPairIndex];
+              var text = Text(wordPair.asPascalCase, style: _biggerFont);
+              if (wordPairIndex == 1) {
+                _logBrightnessInfo(_context, text);
+              }
+              // ListTile is a Material component. It requires a Material in the tree above it. We don't have one, so just use a Row instead.
+              return Row(children: [text]);
+            }));
   }
 
   Text _logBrightnessInfo(BuildContext context, Text value) {
