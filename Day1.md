@@ -227,4 +227,28 @@ And…wow. It hot-reloaded an entire replacement of `main()` without a problem.
 
 I mean, I guess it kept the `MyApp` name. But that's still pretty cool.
 
+#### Detour: Cupertino Style
 I want to see if I can change this into a Cupertino app, and what that might look like.
+
+It wasn't that bad. I did need to see an example (I looked at the video at the top of the Cupertino API reference).
+
+The main thing is that everything Cupertino has a Cupertino prefix, even stuff that only exists in Cupertino mode.
+
+I ran into problems with dark mode, though: my text stayed dark on dark.
+The background color did pick up dark mode, but the text didn't seem to get the hint, so it looked like a black screen.
+
+Debugging works well.
+The view debugger doesn't have a fun 3d flyout view, but it does let you view the tree and poke around.
+I can see it being a bit hard to map between views on the screen vs those in the tree in a busier tree, though.
+
+Layout Explorer only works for flex containers, so a UI that's just a centered text doesn't get visualized beyond a tree.
+
+If you completely change stuff, you can get a scary red screen griping about "Unimplemented handling of missing static target".
+Just reload the app, and all will be well.
+
+If you make a widget not const any more, you might have to un-constify all the way up the tree manually.
+Ran into that with messing with `style` on the Text in a Center.
+The dart error is not very helpful there: "Invalid constant value."
+The error you'd _want_ to see would actually be it flagging the `const` keywords and suggesting to drop them on your behalf since the contents are not `const`.
+
+### Pulling in a pub package
