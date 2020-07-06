@@ -17,8 +17,11 @@ class MyApp extends StatelessWidget {
         navigationBar: CupertinoNavigationBar(
           middle: Text(appName),
         ),
-        // FIXME: This works fine with light mode, but in dark mode, the text stays dark!
+        // FIXME: This works fine with light mode, but in dark mode, the text stays dark! And the dividers go black?
         // The navbar text displays fine in both modes, though.
+
+        // FIXME: This is underlapping the navbar.
+        // FIXME: There is no scrollbar on the side!
         child: Center(
           child: RandomWords(),
         ),
