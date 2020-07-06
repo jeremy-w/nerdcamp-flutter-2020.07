@@ -234,7 +234,7 @@ It wasn't that bad. I did need to see an example (I looked at the video at the t
 
 The main thing is that everything Cupertino has a Cupertino prefix, even stuff that only exists in Cupertino mode.
 
-I ran into problems with dark mode, though: my text stayed dark on dark.
+I ran into problems with **dark mode**, though: my text stayed dark on dark.
 The background color did pick up dark mode, but the text didn't seem to get the hint, so it looked like a black screen.
 
 Debugging works well.
@@ -251,4 +251,49 @@ Ran into that with messing with `style` on the Text in a Center.
 The dart error is not very helpful there: "Invalid constant value."
 The error you'd _want_ to see would actually be it flagging the `const` keywords and suggesting to drop them on your behalf since the contents are not `const`.
 
+##### Dark Mode?
+Here's what I saw on an app reload a bit later when I broke into the debugger:
+
+```
+> CupertinoTheme.of(context)
+CupertinoThemeData (CupertinoThemeData#a8ea5(primaryColor: systemBlue, primaryContrastingColor: systemBackground, barBackgroundColor: CupertinoDynamicColor(color = Color(0xf0f9f9f9), *darkColor = Color(0xf01d1d1d)*, resolved by: RandomWords), scaffoldBackgroundColor: systemBackground, textStyle: TextStyle(inherit: false, color: label(color = Color(0xff000000), *darkColor = Color(0xffffffff)*, resolved by: RandomWords), family: .SF Pro Text, size: 17.0, letterSpacing: -0.4, decoration: TextDecoration.none), actionTextStyle: TextStyle(inherit: false, color: systemBlue(color = Color(0xff007aff), *darkColor = Color(0xff0a84ff)*, highContrastColor = Color(0xff0040dd), darkHighContrastColor = Color(0xff409cff), resolved by: RandomWords), family: .SF Pro Text, size: 17.0, letterSpacing: -0.4, decoration: TextDecoration.none), tabLabelTextStyle: TextStyle(inherit: false, color: inactiveGray(color = Color(0xff999999), *darkColor = Color(0xff757575)*, resolved by: RandomWords), family: .SF Pro Text, size: 10.0, letterSpacing: -0.2), navTitleTextStyle: TextStyle(inherit: false, color: label(color = Color(0xff000000), *darkColor = Color(0xffffffff)*, resolved by: RandomWords), family: .SF Pro Text, size: 17.0, weight: 600, letterSpacing: -0.4), navLargeTitleTextStyle: TextStyle(inherit: false, color: label(color = Color(0xff000000), *darkColor = Color(0xffffffff)*, resolved by: RandomWords), family: .SF Pro Display, size: 34.0, weight: 700, letterSpacing: 0.4), navActionTextStyle: TextStyle(inherit: false, color: systemBlue(color = Color(0xff007aff), *darkColor = Color(0xff0a84ff)*, highContrastColor = Color(0xff0040dd), darkHighContrastColor = Color(0xff409cff), resolved by: RandomWords), family: .SF Pro Text, size: 17.0, letterSpacing: -0.4, decoration: TextDecoration.none), pickerTextStyle: TextStyle(inherit: false, color: label(color = Color(0xff000000), *darkColor = Color(0xffffffff)*, resolved by: RandomWords), family: .SF Pro Display, size: 21.0, weight: 400, letterSpacing: -0.4), dateTimePickerTextStyle: TextStyle(inherit: false, color: label(color = Color(0xff000000), *darkColor = Color(0xffffffff)*, resolved by: RandomWords), family: .SF Pro Display, size: 21.0, weight: 400)))
+> CupertinoTheme.of(context).brightness
+null
+> CupertinoTheme.brightnessOf(context)
+Brightness (Brightness.dark)
+```
+
+Nice to see high-contrast support in there! And it sure looks like there's a dark color for text that's applied.
+
+And yet, when rendering finishes, the text is black, not white. Hmm.
+Going to let this drop for now.
+
+_I wish Dash had Flutter docs support. It supports Dart, but Flutter packages don't seem to be in Pub for it to fetch the docs?_
+
 ### Pulling in a pub package
+Add it into the yml file, save, and it gets pulled in.
+
+Importing: I'm not sure what the convention is in Dart-land for import paths.
+It seems weird to me to import a specific dart file, but that's what you do.
+
+I keep forgetting to write semicolons. Dart, unlike most everything else, has kept them.
+
+Since I'd already experienced the un-const fun, I didn't hit any snags using the new package.
+
+I kinda wish stuff wasn't all glued into the main namespace, but stayed namespaced. Ah well.
+
+### Adding a stateful widget
+> Prefixing an identifier with an underscore enforces privacy in the Dart language and is a recommended best practice for State objects.
+
+ I find this more obvious and intuitive than Go's capitalization-based convention, since it agrees with common practice across a lot of languages for flagging private API.
+
+Painless. Kinda funny they're not actually using diff syntax in the tutorial steps.
+
+Would be more impressive as an Extract Component refactoring that lets you mark the state to yank out.
+The expected snippet was there in VS Code, though.
+
+I wonder if the Code extension has first-party support?
+Looking at https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter and: yup. First-party. Nice!
+
+### Infinite ListView
+Going to comment less and just try to go through this now. Running out of time.
