@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
 void main() => runApp(MyApp());
@@ -28,9 +31,20 @@ class RandomWords extends StatefulWidget {
 }
 
 class _RandomWordsState extends State<RandomWords> {
+  final List<WordPair> _suggestions = [];
+  // Style seems to be getting completely ignored. No color or font size changes are seen!
+  // A-hah, needed to do a full stop and relaunch. That is very unfortunate for trying to tweak styles live!
+  final TextStyle _biggerFont = TextStyle(fontSize: 18);
   @override
   Widget build(BuildContext context) {
     final wordPair = WordPair.random();
-    return Text(wordPair.asPascalCase);
+    final query = MediaQuery.of(context);
+    log('query brightness: ${query.platformBrightness}');
+    final value = Text(wordPair.asPascalCase, style: _biggerFont);
+    log('text color is: ${value.style.color}');
+    log('default text style color is: ${DefaultTextStyle.of(context).style.color}');
+    log('Theme brightness is: ${Theme.of(context).brightness}');
+    log('Cupertino brightness is: ${CupertinoTheme.brightnessOf(context)}');
+    return value;
   }
 }

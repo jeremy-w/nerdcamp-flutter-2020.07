@@ -268,6 +268,23 @@ Nice to see high-contrast support in there! And it sure looks like there's a dar
 And yet, when rendering finishes, the text is black, not white. Hmm.
 Going to let this drop for now.
 
+…ok, accidentally had another look.
+I noticed that setting and updating the text style wasn't live-updating; I had to do a full quit and rebuild to see any changes.
+At a guess, it might have to do with inlining const values.
+(But the text still didn't render with the dark mode color. :( )
+
+Confirmed also an issue on device.
+
+Oh sheesh. Text isn't a Cupertino widget, so it ignores Cupertino styling.
+And if I import material, I can see:
+
+```
+> Theme.of(context).brightness
+Brightness (Brightness.light)
+```
+
+Material doesn't seem to be picking up the system brightness.
+
 _I wish Dash had Flutter docs support. It supports Dart, but Flutter packages don't seem to be in Pub for it to fetch the docs?_
 
 ### Pulling in a pub package
