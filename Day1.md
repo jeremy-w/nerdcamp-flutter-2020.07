@@ -1,14 +1,15 @@
 # Day 1: Quickstart & Docs Familiarization + Build Pipeline
 ## The Plan
-- timebox: 2 hours:
+- timebox: 2 hours: **got through just part 1; mostly curious about routing in part 2**
   - run through codelabs for first app part 1 & part 2 and flutter for web
   - https://flutter.dev/docs/codelabs
-- timebox: 2 hours:
+- timebox: 2 hours: **skipped**
   - browse the other docs and get a sense for what resources are available
   - (also hit up o'reilly and see what's in there, though i'd prefer first-party docs)
-- how easy is code sharing across platforms?
+- how easy is code sharing across platforms? **inadvertently answered**
   - e.g. create a flutter view, can i use it across iOS & Web & Android, or do i need to code in flutter for a particular platform?
-- build pipeline:
+  - **Answer:** very easy if sticking with Material design (the road actually trodden). otherwise probably want [flutter_platform_widgets](https://pub.dev/packages/flutter_platform_widgets).
+- build pipeline: **kicked to Tuesday**
   - what does CI look like?
   - what build platforms are supported? (can i do dev on windows? linux?)
   - cross-compilation support? or do you need multiple runners?
@@ -16,6 +17,15 @@
   - what gets run to create a flutter app for various platforms?
   - what are the inputs and build artifacts?
   - can you ship a binary library, or only open source?
+
+## Retro
+I got a lot of experience. Mostly via bugfix spelunking (shakes fist at dark mode) and going off track from the tutorial on purpose with looking at Cupertino behavior.
+
+- I am no good at timeboxing. I'll need to re-evaluate the rest of the week after this. I think this mostly means gluing the build spelunking onto Tuesday.
+- CupertinoApp seems much less used. Docs are scant.
+- Dark Mode doesn't seem to be enabled by default. I can't even find instructions on making Text work right for dark mode with a CupertinoApp rather than a MaterialApp.
+- Rotation is borked on iOS.
+- No Safe Area?!
 
 ## Codelab 1
 https://codelabs.developers.google.com/codelabs/first-flutter-app-pt1/#0
@@ -314,3 +324,7 @@ Looking at https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter
 
 ### Infinite ListView
 Going to comment less and just try to go through this now. Running out of time.
+
+Hmm OK not so bad.
+Did need to **explicitly wrap the scroll view in a scrollbar widget though.**
+Which probably explains why some of the Flutter apps I've run into seem not to have a scrollbar.
