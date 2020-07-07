@@ -295,7 +295,15 @@ Brightness (Brightness.light)
 
 Material doesn't seem to be picking up the system brightness.
 
+##### Dash Docs
 _I wish Dash had Flutter docs support. It supports Dart, but Flutter packages don't seem to be in Pub for it to fetch the docs?_
+
+Hey, whaddayaknow, Flutter does have the docs, they're just nigh-undiscoverable: https://github.com/flutter/website/issues/1975
+
+- Add stable docset to dash via: `open dash-feed://https%3A//api.flutter.dev/offline/flutter.xml` and then clicking "Download" on it
+- Add latest docset via: `open dash-feed://https%3A//master-api.flutter.dev/offline/flutter.xml`
+
+(Note that I've updated the URLs to the latest, in case the original `docs.flutter.io` URLs eventually stop redirecting to their `api.flutter.dev` successors.)
 
 ### Pulling in a pub package
 Add it into the yml file, save, and it gets pulled in.
