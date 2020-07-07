@@ -32,3 +32,9 @@ BuildVersion:	19F101
   I deviated from the codelab in favor of creating a Cupertino-style app, which walked straight into issues with rotation and dark mode.
   The rotation issue looks to be a fundamental issue with how Flutter approaches rendering & iOS handles rotation.
   I never quite got Text rendering properly in Dark Mode; the CupertinoThemeData and the ThemeData just aren't on speaking terms.
+
+## Side Jaunts
+- Dark Mode: CupertinoThemeData correctly picks up the system brightness, but in a CupertinoApp, the ThemeData does not, so Text seems to render as if in light mode all the time.
+- API Docs: Lots of very visible tasks that aren't getting any investment, it seems.
+    - Scrolling: The docs browser at api.flutter.dev doesn't act right on an iPhone. It doesn't scroll to top on status bar tap, and there's no scrollbar, which makes scrolling down to the end of a long page a royal pain, since you can't grab the bar to directly page down 100 pages. [flutter/website doesn't actually manage the API docs](https://github.com/flutter/website/issues/3362#issuecomment-567138709). flutter/flutter [generates the API docs](https://github.com/flutter/flutter/blob/master/dev/tools/dartdoc.dart) using dartdoc. It's in [dartdoc](https://github.com/dart-lang/dartdoc) that the issue must ultimately lie.
+    - Size: Turns out the generated docs bundle is huge - there's a file per method. This has been a problem for both Flutter & Dart Angular. https://github.com/dart-lang/dartdoc/issues/1983
