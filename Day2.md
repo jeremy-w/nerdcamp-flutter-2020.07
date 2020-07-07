@@ -46,12 +46,15 @@ _this was originally planned for Monday_
 - can you ship a binary library, or only open source?
 
 ## Retro
-TODO: Fill in at end of day. :)
-
+- I feel pretty good about today. I didn't answer all the questions, but the questions I have open are mostly good ones that I can test with an experiment now. I spent a lot of time reading docs on the main Flutter site, and I think that's paying off. I would like to write some more code, but that's mostly the slow way to learn things, as necessary as it is to building the right intuitions for solving problems and getting things done.
 - Opened a PR fixing a Getting Started walkthrough page that stumped me yesterday: https://github.com/flutter/website/pull/4310
 - And another PR that should save someone a click, on how relative package paths are understood: https://github.com/flutter/website/pull/4311
+- Started reading about how Flutter plans to tackle state restoration. Leaving several comments with a more Apple-platform perspective as I go
+    - [The Proposal Doc](https://flutter.dev/go/state-restoration-design)
+    - [The Implementation](https://github.com/flutter/flutter/pull/60375)
 
 ## Runtime Architecture
+Uses a VM in debug mode to enable hot-reload, AOT-compiled code otherwise.
 
 ### System Level
 I'm focusing on native mobile app uses. Web is still WIP; there's no way to do a platform-check, the [forward button doesn't work in the browser](https://flutter.dev/docs/development/platform-integration/web#how-are-forward-and-backward-buttons-presented-in-the-web-ui), dart:ffi apparently isn't supported?, and hot reload doesn't work, just hot restart (discarding all state back to initial).
@@ -165,6 +168,10 @@ Overall, things look to be in pretty good shape for locale-specific text, but no
 
 ## Compile-Time Architecture
 TODO: This was originally planned for Monday.
+
+And I guess now it gets kicked to Wednesday.
+
+This looks promising though: https://github.com/flutter/flutter/wiki/The-Engine-architecture
 
 ## New Platform-Specific Concerns: Text Editing
 After reading about [platform adaptations](https://flutter.dev/docs/resources/platform-adaptations),
