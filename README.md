@@ -26,3 +26,9 @@ ProductName:	Mac OS X
 ProductVersion:	10.15.5
 BuildVersion:	19F101
 ```
+
+## Contents
+- On [Day 1](./Day1.md), I wrote my first Flutter app.
+  I deviated from the codelab in favor of creating a Cupertino-style app, which walked straight into issues with rotation and dark mode.
+  The rotation issue looks to be a fundamental issue with how Flutter approaches rendering & iOS handles rotation.
+  I never quite got Text rendering properly in Dark Mode; the CupertinoThemeData and the ThemeData just aren't on speaking terms.
