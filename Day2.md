@@ -12,13 +12,18 @@ Runtime:
     - TODO: find this in the source code
 - what does this mean for:
     - accessibility?
-        - reduce motion
-        - bold text
-        - reduce transparency
-        - voiceover
-        - switch control
-        - aria-live regions
-        - **should be able to test this in the context of a codelab app deployed to an iPhone and for Web hosted locally and visited in Mobile Safari.**
+        - can see the active [AccessibilityFeatures](https://api.flutter.dev/flutter/dart-ui/AccessibilityFeatures-class.html)
+            - reduce motion: supported, would need to grep to see if honored by default widgets
+                - disable animations also exists as a separate feature
+            - bold text: supported, would need to grep to see if honored by default widgets
+            - reduce transparency: NOT supported
+            - also: high contrast, invert colors
+        - voiceover: can check if enabled via [AccessibilityFeatures.accessibleNavigation](https://api.flutter.dev/flutter/dart-ui/AccessibilityFeatures/accessibleNavigation.html)
+        - switch control: **possibly not surfaced?**
+        - aria-live regions: supported
+            - See: https://api.flutter.dev/flutter/dart-ui/SemanticsFlag/isLiveRegion-constant.html
+            - Manually triggering an update for a live region was never implemented and is now deprecated, but you can post a string announcement with [AnnounceSemanticsEvent](https://api.flutter.dev/flutter/semantics/AnnounceSemanticsEvent-class.html).
+            - **I don't see a way to redirect focus to an element, though?** as with UIAccessibility.notification.screenChanged or .layoutChanged, which can be posted with an accessibility element as its value. focus management is commonly needed when alerts appear or are dismissed or UI changes. live region translates to updatesFrequently ("poll as needed" as with a stopwatch readout) in iOS, which isn't a replacement.
 - accessibility for custom-drawing?
     - You'd be using Widgets, which can attach Semantics, so you should be good to go.
 - i18n?
