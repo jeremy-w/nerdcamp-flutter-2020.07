@@ -32,6 +32,7 @@ BuildVersion:	19F101
   I deviated from the codelab in favor of creating a Cupertino-style app, which walked straight into issues with rotation and dark mode.
   The rotation issue looks to be a fundamental issue with how Flutter approaches rendering & iOS handles rotation.
   I never quite got Text rendering properly in Dark Mode; the CupertinoThemeData and the ThemeData just aren't on speaking terms.
+- On [Day 2](./Day2.md), I looked more at how Flutter is architected and how it addresses cross-cutting concerns like accessibility and internationalization. The general answer is "it's got those covered", but there are some details I'm not convinced it does handle, the biggest probably being announcing changes (Web: [aria-live regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions), iOS: `UIAccessibility.post(notification: .layoutChanged, argument: stringOrView)`, Android: [accessibilityLiveRegion](https://codelabs.developers.google.com/codelabs/basic-android-accessibility/#6)).
 
 ## Side Jaunts
 - Dark Mode: CupertinoThemeData correctly picks up the system brightness, but in a CupertinoApp, the ThemeData does not, so Text seems to render as if in light mode all the time.
