@@ -46,7 +46,7 @@ class _RandomWordsState extends State<RandomWords> {
     return CupertinoScrollbar(
         child: ListView.builder(
             padding: const EdgeInsets.only(left: 12),
-            itemBuilder: (BuildContext _context, int i) {
+            itemBuilder: (BuildContext context, int i) {
               if (i.isOdd) {
                 return Divider();
               }
@@ -59,7 +59,7 @@ class _RandomWordsState extends State<RandomWords> {
               final wordPair = _suggestions[wordPairIndex];
               var text = Text(wordPair.asPascalCase /*, style: _biggerFont*/);
               if (wordPairIndex == 1) {
-                _logBrightnessInfo(_context, text);
+                _logBrightnessInfo(context, text);
               }
               // ListTile is a Material component. It requires a Material in the tree above it. We don't have one, so just use a Row instead.
               return Row(children: [text]);
