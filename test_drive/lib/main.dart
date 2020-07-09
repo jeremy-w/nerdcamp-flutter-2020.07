@@ -13,21 +13,45 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       title: appName,
-      home: CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          middle: Text(appName),
-        ),
-        // FIXME: This works fine with light mode, but in dark mode, the text stays dark! And the dividers go black?
-        // The navbar text displays fine in both modes, though.
+      home: Builder(
+        builder: (context) => wrapWithBrightnessAwareTheme(
+          context: context,
+          child: CupertinoPageScaffold(
+            navigationBar: CupertinoNavigationBar(
+              middle: Text(appName),
+            ),
+            // FIXME: This works fine with light mode, but in dark mode, the text stays dark! And the dividers go black?
+            // The navbar text displays fine in both modes, though.
+            //
+            // With the addition of the wrapping Theme, the navbar stays in light mode at all times, while the main content only sort of goes into dark mode.
 
-        // FIXME: This is underlapping the navbar.
-        child: Center(
-          child: RandomWords(),
+            // FIXME: This is underlapping the navbar.
+            child: Center(
+              child: RandomWords(),
+            ),
+          ),
         ),
       ),
     );
   }
 }
+
+/// When true, _logBrightnessInfo reports both Theme and CupertinoTheme brightness agreeing on light/dark.
+/// But then the navbar looks light for some reason, while the text is black on gray, and the divider is a light gray.
+///
+/// When false, in dark mode, the theme brightness is light, while the cupertino is dark.
+/// This leads to rendering black text on a black background.
+///
+/// No matter what, the default text style color chosen is the light version. I don't get it.
+var shouldWrapTheme = false;
+Widget wrapWithBrightnessAwareTheme({BuildContext context, Widget child}) => !shouldWrapTheme
+    ? child
+    : Theme(
+        data: MediaQuery.platformBrightnessOf(context) == Brightness.light
+            ? ThemeData.light()
+            : ThemeData.dark(),
+        child: child,
+      );
 
 class RandomWords extends StatefulWidget {
   @override
