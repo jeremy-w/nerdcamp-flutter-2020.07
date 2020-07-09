@@ -57,7 +57,7 @@ class _RandomWordsState extends State<RandomWords> {
               }
 
               final wordPair = _suggestions[wordPairIndex];
-              var text = Text(wordPair.asPascalCase, style: _biggerFont);
+              var text = Text(wordPair.asPascalCase /*, style: _biggerFont*/);
               if (wordPairIndex == 1) {
                 _logBrightnessInfo(_context, text);
               }
@@ -69,7 +69,7 @@ class _RandomWordsState extends State<RandomWords> {
   Text _logBrightnessInfo(BuildContext context, Text value) {
     final query = MediaQuery.of(context);
     log('query brightness: ${query.platformBrightness}');
-    log('text color is: ${value.style.color}');
+    log('text color is: ${value.style?.color}');
     log('default text style color is: ${DefaultTextStyle.of(context).style.color}');
     log('Theme brightness is: ${Theme.of(context).brightness}');
     log('Cupertino brightness is: ${CupertinoTheme.brightnessOf(context)}');
