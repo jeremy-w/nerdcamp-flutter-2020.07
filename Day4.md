@@ -35,7 +35,7 @@ Its hybrid compilation approach and framework design give it rapid build and dep
 I worried that custom rendering would lead to broken accessibility support.
 In fact, its accessibility support is solid: it builds and maintains a "Semantics tree" to represent accessibility elements as a core part of its rendering pipeline.
 There's even automated test support for checking some standard [accessibility guidelines](https://api.flutter.dev/flutter/flutter_test/AccessibilityGuideline-class.html#autolink-31819), such as text contrast.
-Dynamic Tyype support is baked into the Flutter framework.
+Dynamic Type support is baked into the Flutter framework.
 I have not had a chance to investigate how well the stock UI components respect accessibility preferences like Reduce Motion or Bold Text, but those preferences are readily accessible, so it would be easy to accommodate them yourself.
 
 ### Localization support is not bad
